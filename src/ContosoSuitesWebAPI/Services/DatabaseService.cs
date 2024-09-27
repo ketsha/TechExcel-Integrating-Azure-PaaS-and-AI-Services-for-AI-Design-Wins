@@ -38,7 +38,7 @@ public class DatabaseService : IDatabaseService
     public async Task<IEnumerable<Booking>> GetBookingsForHotel(int hotelId)
     {
      [KernelFunction]
-     [Description("Get all hotels.")]
+     [Description("Get Booking for a single Hotel.")]
      public async Task<IEnumerable<Hotel>> GetBookingsForHotel()
      
      var sql = "SELECT BookingID, CustomerID, HotelID, StayBeginDate, StayEndDate, NumberOfGuests FROM dbo.Booking WHERE HotelID = @HotelID";
@@ -70,7 +70,7 @@ public class DatabaseService : IDatabaseService
     public async Task<IEnumerable<Booking>> GetBookingsByHotelAndMinimumDate(int hotelId, DateTime dt)
     {
      [KernelFunction]
-     [Description("Get all hotels.")]
+     [Description("Get Booking By Hotel and Minimum Date.")]
      public async Task<IEnumerable<Hotel>> GetBookingsByHotelAndMinimumDate()        
         
         var sql = "SELECT BookingID, CustomerID, HotelID, StayBeginDate, StayEndDate, NumberOfGuests FROM dbo.Booking WHERE HotelID = @HotelID AND StayBeginDate >= @StayBeginDate";
@@ -104,7 +104,7 @@ public class DatabaseService : IDatabaseService
     {
     
      [KernelFunction]
-     [Description("Get all hotels.")]
+     [Description("Get Bookings for Missing Hotel Rooms.")]
      public async Task<IEnumerable<Hotel>> GetBookingsMissingHotelRooms()     
         var sql = """
             SELECT
@@ -150,7 +150,7 @@ public class DatabaseService : IDatabaseService
     public async Task<IEnumerable<Booking>> GetBookingsWithMultipleHotelRooms()
     {
      [KernelFunction]
-     [Description("Get all hotels.")]
+     [Description("Get Booking with Multiple Hotel Rooms")]
      public async Task<IEnumerable<Hotel>> GetBookingsWithMultipleHotelRooms()
         
         var sql = """
