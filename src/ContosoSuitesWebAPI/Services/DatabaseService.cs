@@ -1,3 +1,5 @@
+using Microsoft.SemanticKernel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Microsoft.Data.SqlClient;
 using ContosoSuitesWebAPI.Entities;
