@@ -8,11 +8,10 @@ namespace ContosoSuitesWebAPI.Services;
 
 public class DatabaseService : IDatabaseService
 {
-    public async Task<IEnumerable<Hotel>> GetHotels()
-    {
      [KernelFunction]
      [Description("Get all hotels.")]
      public async Task<IEnumerable<Hotel>> GetHotels()
+     {
         var sql = "SELECT HotelID, HotelName, City, Country FROM dbo.Hotel";
         using var conn = new SqlConnection(
             connectionString: Environment.GetEnvironmentVariable("SQLCONNSTR_ContosoSuites")!
@@ -35,11 +34,10 @@ public class DatabaseService : IDatabaseService
         return hotels;
     }
 
-    public async Task<IEnumerable<Booking>> GetBookingsForHotel(int hotelId)
-    {
      [KernelFunction]
      [Description("Get Booking for a single Hotel.")]
-     public async Task<IEnumerable<Hotel>> GetBookingsForHotel()
+     public async Task<IEnumerable<Booking>> GetBookingsForHotel(int hotelId)
+     {
      [Description("The ID of the hotel")] int hotelId
      var sql = "SELECT BookingID, CustomerID, HotelID, StayBeginDate, StayEndDate, NumberOfGuests FROM dbo.Booking WHERE HotelID = @HotelID";
         using var conn = new SqlConnection(
@@ -66,12 +64,10 @@ public class DatabaseService : IDatabaseService
 
         return bookings;
     }
-
-    public async Task<IEnumerable<Booking>> GetBookingsByHotelAndMinimumDate(int hotelId, DateTime dt)
-    {
      [KernelFunction]
      [Description("Get Booking By Hotel and Minimum Date.")]
-     public async Task<IEnumerable<Hotel>> GetBookingsByHotelAndMinimumDate()        
+     public async Task<IEnumerable<Booking>> GetBookingsByHotelAndMinimumDate(int hotelId, DateTime dt)
+     {
         [Description("The ID of the hotel")] int hotelId
         [Description("The Date and Time of the hotel")] DateTime dt
         var sql = "SELECT BookingID, CustomerID, HotelID, StayBeginDate, StayEndDate, NumberOfGuests FROM dbo.Booking WHERE HotelID = @HotelID AND StayBeginDate >= @StayBeginDate";
@@ -100,13 +96,11 @@ public class DatabaseService : IDatabaseService
 
         return bookings;
     }
-    
-    public async Task<IEnumerable<Booking>> GetBookingsMissingHotelRooms()
-    {
-    
+
      [KernelFunction]
      [Description("Get Bookings for Missing Hotel Rooms.")]
-     public async Task<IEnumerable<Hotel>> GetBookingsMissingHotelRooms()     
+     public async Task<IEnumerable<Booking>> GetBookingsMissingHotelRooms()
+     {
         var sql = """
             SELECT
                 b.BookingID,
@@ -148,11 +142,10 @@ public class DatabaseService : IDatabaseService
         return bookings;
     }
     
-    public async Task<IEnumerable<Booking>> GetBookingsWithMultipleHotelRooms()
-    {
      [KernelFunction]
      [Description("Get Booking with Multiple Hotel Rooms")]
-     public async Task<IEnumerable<Hotel>> GetBookingsWithMultipleHotelRooms()
+     public async Task<IEnumerable<Booking>> GetBookingsWithMultipleHotelRooms()
+     {
         
         var sql = """
             SELECT
